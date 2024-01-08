@@ -3,14 +3,15 @@ import { useState } from "react";
 
 export default function App() {
   const color = ["red", "green", "blue", "white", "yellow"];
+  const [bgcolor, setBgcolor] = useState("white");
   return (
-    <main>
+    <div>
       <h1>Background Changer</h1>
 
       {color.map((n, i) => (
         <button
           key={i}
-          onClick={() => {document.body.style.backgroundColor = n}}
+          onClick={() => setBgcolor(n)}
           style={{ backgroundColor: n, fontSize: "70px" }}
         >
           {/* {(() => {
@@ -32,6 +33,14 @@ export default function App() {
           {n}
         </button>
       ))}
-    </main>
+
+      <style>
+        {`
+          body {
+            background-color: ${bgcolor};
+          }
+        `}
+      </style>
+    </div>
   );
 }
